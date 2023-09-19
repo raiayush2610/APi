@@ -25,17 +25,24 @@ router.post('/bfhl', async (req, res)=>{
     }
 })
 router.post('/bfhl', async (req, res)=>{
-    try
-{    
-   
-        "User_ID" ; "john_doe_17091999",
-        // save
-       
-        res.status(200).json(save);
-    } catch (error) {
-        res.json(error)
-        
+     // Find the highest alphabet
+    // const highestAlphabet = alphabets.reduce((max, current) => max > current ? max : current);
+    const numbers = [];
+    const alphabets = [];
+
+    // Loop through the input list and separate numbers and alphabets
+    for (const item of data) {
+        if (typeof item === 'number' || !isNaN(parseInt(item))) {
+        // Check if the item is a number
+        numbers.push(item);
+        } else if (typeof item === 'string' && item.length === 1 && item.match(/[a-zA-Z]/)) {
+        // Check if the item is a single alphabet character
+        alphabets.push(item);
+        }
     }
+
+    // Find the maximum alphabet among the alphabets
+    const maxAlphabet = alphabets.reduce((max, current) => (current > max ? current : max), '');
 })
 
 router.get('/bfhl', async (req, res)=>{
